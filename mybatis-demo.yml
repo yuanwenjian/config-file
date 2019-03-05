@@ -1,0 +1,30 @@
+
+server:
+    port: 8084
+spring:
+    application:
+        name: gateway-demo
+eureka:
+    instance:
+        hostname: localhost
+    client:
+        service-url:
+            defaultZone: http://10.10.100.11:8081/eureka/,http://10.10.100.11:8082/eureka
+#            defaultZone: http://110.10.100.11:8081/eureka/,http://110.10.100.11:8082/eureka
+
+zuul:
+    routes:
+        mybatis-demo:
+            paths: mybatis-demo/*
+            serviceId: mybatis-demo
+
+ribbon:
+    eureka:
+        enabled: false
+
+mybatis-demo:
+    ribbon:
+        listOfServers: http://localhost:8083,http://localhost:8085
+        NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule #
+        ReadTimeout: 5000
+

@@ -1,30 +1,36 @@
-
-server:
-    port: 8084
 spring:
     application:
-        name: gateway-demo
+        name: mybatis-demo
+    datasource:
+        master:
+            url: jdbc:mysql://192.168.1.58:3306/edb_a20000?useSSL=false
+            username: root
+            password: Server-wms654321
+        slave:
+            url: jdbc:mysql://192.168.1.58:3306/edb_b20000?useSSL=false
+            username: root
+            password: Server-wms654321
+
+    redis:
+        host: 127.0.0.1
+        port: 6379
+        password:
+
+#mybatis:
+#    config-location: classpath:mybatis-config.xml
+#    type-aliases-package: com.yuanwj.mybatisdemo.model
+#    configuration:
+#        map-underscore-to-camel-case: true
+#    mapper-locations: classpath:mapper/**/*.xml
+
+server:
+    port: 8083
 eureka:
     instance:
         hostname: localhost
+        metadataMap:
+            instanceId: ${spring.application.name}:${random.value}
     client:
         service-url:
-            defaultZone: http://10.10.100.11:8081/eureka/,http://10.10.100.11:8082/eureka
-#            defaultZone: http://110.10.100.11:8081/eureka/,http://110.10.100.11:8082/eureka
-
-zuul:
-    routes:
-        mybatis-demo:
-            paths: mybatis-demo/*
-            serviceId: mybatis-demo
-
-ribbon:
-    eureka:
-        enabled: false
-
-mybatis-demo:
-    ribbon:
-        listOfServers: http://localhost:8083,http://localhost:8085
-        NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule #
-        ReadTimeout: 5000
-
+#            defaultZone: http://192.168.50.150:8081/eureka,http://192.168.50.150:8082/eureka
+            defaultZone: http://localhost:8081/eureka,http://localhost:8082/eureka

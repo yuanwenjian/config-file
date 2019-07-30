@@ -5,11 +5,11 @@ spring:
         master:
             url: jdbc:mysql://localhost:3306/edb_a20000?useSSL=false
             username: root
-            password: Server-wms654321
+            password: 123456
         slave:
             url: jdbc:mysql://localhost:3306/edb_b20000?useSSL=false
             username: root
-            password: Server-wms654321
+            password: 123456
 
     redis:
         host: 192.168.50.26

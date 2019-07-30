@@ -3,11 +3,11 @@ spring:
         name: mybatis-demo
     datasource:
         master:
-            url: jdbc:mysql://192.168.1.58:3306/edb_a20000?useSSL=false
+            url: jdbc:mysql://localhost:3306/edb_a20000?useSSL=false
             username: root
             password: Server-wms654321
         slave:
-            url: jdbc:mysql://192.168.1.58:3306/edb_b20000?useSSL=false
+            url: jdbc:mysql://localhost:3306/edb_b20000?useSSL=false
             username: root
             password: Server-wms654321
 
